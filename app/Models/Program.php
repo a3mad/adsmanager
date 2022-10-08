@@ -15,7 +15,7 @@ class Program extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name','presenter','logo','description'
+        'name','presenter','logo','description','is_radio'
     ];
     /**
      * The attributes that should be hidden for serialization.
