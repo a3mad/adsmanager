@@ -6,11 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "formfeed-uk/nova-breadcrumbs": "^1.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
         "laravel/nova": "~4.0",
         "laravel/passport": "^11.1",
         "laravel/tinker": "^2.7",
+        "maatwebsite/excel": "^3.1",
+        "psr/simple-cache": "2.0",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
