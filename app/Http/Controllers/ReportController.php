@@ -18,6 +18,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $request->validate([
+            'program_id'=>'required',
             'date_from' => 'required_with:date_to|date_format:Y-m-d',
             'date_to' => 'required_with:date_from|date_format:Y-m-d|after_or_equal:date_from',
             'time_from' => 'required_with:time_to|date_format:H:i:s',
@@ -33,21 +34,26 @@ class ReportController extends Controller
         $sponsor_types = DB::table('sponsor_types')
             ->leftJoin('reports', 'sponsor_types.id', '=', 'reports.sponsor_type_id')
             ->select('sponsor_types.id', 'sponsor_types.name', DB::raw('count(reports.sponsor_type_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy('sponsor_types.id', 'sponsor_types.name');
         $locations = DB::table('locations')
             ->leftJoin('reports', 'locations.id', '=', 'reports.location_id')
             ->select('locations.id', 'locations.name', DB::raw('count(reports.location_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy('locations.id', 'locations.name');
         $program_breaks = DB::table('program_breaks')
             ->leftJoin('reports', 'program_breaks.id', '=', 'reports.program_break_id')
             ->select('program_breaks.id', 'program_breaks.name', DB::raw('count(reports.program_break_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy('program_breaks.id', 'program_breaks.name');
         $reruns = DB::table('reruns')
             ->leftJoin('reports', 'reruns.id', '=', 'reports.rerun_id')
             ->select('reruns.id', 'reruns.name', DB::raw('count(reports.rerun_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy('reruns.id', 'reruns.name');
         $air_time = DB::table('reports')
             ->select(DB::raw('hour(air_time) as hour'), DB::raw('count(*) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy(DB::raw('hour(air_time)'));
 
         $data = [

@@ -25,4 +25,10 @@ class Program extends Model
     protected $hidden = [
         'deleted_at',
     ];
+    protected $appends=['logo_url'];
+
+    public function getLogoUrlAttribute()
+    {
+        return asset($this->attributes['logo']);
+    }
 }
