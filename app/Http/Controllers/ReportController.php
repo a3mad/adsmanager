@@ -18,23 +18,23 @@ class ReportController extends Controller
     {
         $sponsor_types = DB::table('sponsor_types')
             ->leftJoin('reports','sponsor_types.id', '=', 'reports.sponsor_type_id')
-            ->select('sponsor_types.name', DB::raw('count(reports.sponsor_type_id) as total'))
-            ->groupBy('sponsor_types.name')
+            ->select('sponsor_types.id','sponsor_types.name', DB::raw('count(reports.sponsor_type_id) as total'))
+            ->groupBy('sponsor_types.id','sponsor_types.name')
             ->get();
         $locations = DB::table('locations')
             ->leftJoin('reports','locations.id', '=', 'reports.location_id')
-            ->select('locations.name', DB::raw('count(reports.location_id) as total'))
-            ->groupBy('locations.name')
+            ->select('locations.id','locations.name', DB::raw('count(reports.location_id) as total'))
+            ->groupBy('locations.id','locations.name')
             ->get();
         $program_breaks = DB::table('program_breaks')
             ->leftJoin('reports','program_breaks.id', '=', 'reports.program_break_id')
-            ->select('program_breaks.name', DB::raw('count(reports.program_break_id) as total'))
-            ->groupBy('program_breaks.name')
+            ->select('program_breaks.id','program_breaks.name', DB::raw('count(reports.program_break_id) as total'))
+            ->groupBy('program_breaks.id','program_breaks.name')
             ->get();
         $reruns = DB::table('reruns')
             ->leftJoin('reports','reruns.id', '=', 'reports.rerun_id')
-            ->select('reruns.name', DB::raw('count(reports.rerun_id) as total'))
-            ->groupBy('reruns.name')
+            ->select('reruns.id','reruns.name', DB::raw('count(reports.rerun_id) as total'))
+            ->groupBy('reruns.id','reruns.name')
             ->get();
         $air_time = DB::table('reports')
             ->select(DB::raw('hour(air_time) as hour'), DB::raw('count(*) as total'))
