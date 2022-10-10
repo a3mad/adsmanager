@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\DigitalReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('programs', [ProgramController::class, 'index']);
         Route::get('reports', [ReportController::class, 'index']);
+        Route::get('digital-reports', [DigitalReportController::class, 'index']);
     });
 
 });

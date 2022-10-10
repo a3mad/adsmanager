@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Traits\ApiResponser;
@@ -18,7 +19,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'program_id'=>'required',
+            'program_id' => 'required',
             'date_from' => 'required_with:date_to|date_format:Y-m-d',
             'date_to' => 'required_with:date_from|date_format:Y-m-d|after_or_equal:date_from',
             'time_from' => 'required_with:time_to|date_format:H:i:s',
@@ -66,6 +67,8 @@ class ReportController extends Controller
         foreach ($data as $key => &$value) {
             if ($request->input('date_from') && $request->input('date_to')) {
                 $value->whereBetween('air_date', [$request->input('date_from'), $request->input('date_to')]);
+            } else {
+                $value->whereBetween('air_date', [Carbon::yesterday(), Carbon::now()]);
             }
             if ($request->input('time_from') && $request->input('time_to')) {
                 $value->whereBetween('air_time', [$request->input('time_from'), $request->input('time_to')]);
