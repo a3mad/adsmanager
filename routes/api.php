@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\DigitalReportController;
+use App\Http\Controllers\RequestedReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::prefix('v1')->group(function () {
         Route::get('programs', [ProgramController::class, 'index']);
         Route::get('reports', [ReportController::class, 'index']);
         Route::get('digital-reports', [DigitalReportController::class, 'index']);
+        Route::get('requested-reports', [RequestedReportController::class, 'index']);
     });
 
 });

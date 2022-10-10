@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('digital_reports', function (Blueprint $table) {
+        Schema::create('requested_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('program_id');
-            $table->string('url');
-            $table->string('image');
-            $table->unsignedSmallInteger('number_of_sponsors');
-            $table->unsignedSmallInteger('number_of_commercials');
-            $table->text('note')->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('report_file');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('digital_reports');
+        Schema::dropIfExists('requested_reports');
     }
 };

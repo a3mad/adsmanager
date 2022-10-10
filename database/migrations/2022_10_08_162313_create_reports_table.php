@@ -28,7 +28,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('duration');
             $table->unsignedBigInteger('program_break_id');
             $table->unsignedBigInteger('sponsor_id');
-            $table->text('match');
+            $table->text('match')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

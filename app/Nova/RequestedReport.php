@@ -5,27 +5,26 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class DigitalReport extends Resource
+class RequestedReport extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\DigitalReport::class;
+    public static $model = \App\Models\RequestedReport::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'created_at';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -33,7 +32,7 @@ class DigitalReport extends Resource
      * @var array
      */
     public static $search = [
-        'id','note','created_at'
+        'name',
     ];
 
     /**
@@ -48,12 +47,12 @@ class DigitalReport extends Resource
             ID::make()->sortable(),
             BelongsTo::make('Program')->withoutTrashed()
                 ->sortable(),
-            Text::make('URL')
-                ->rules('required', 'max:255'),
-            Image::make('image')->disk('public'),
-            Number::make('Number Of Sponsors')->min(1)->max(1000),
-            Number::make('Number Of Commercials')->min(1)->max(1000),
-            Textarea::make('Note')
+            Text::make('name')
+                ->rules('required', 'max:255')
+            ->sortable(),
+            File::make('Report File')->disk('public')
+            ->rules('required','file','mimes:pdf,ppt,pptx,doc,docx,xls,xlsx'),
+            Textarea::make('Description')
         ];
     }
 
