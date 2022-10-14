@@ -8,6 +8,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\DigitalReportController;
 use App\Http\Controllers\RequestedReportController;
 use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\OutdoorLocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::prefix('v1')->group(function () {
         Route::get('digital-reports', [DigitalReportController::class, 'index']);
         Route::get('requested-reports', [RequestedReportController::class, 'index']);
         Route::get('qr-codes', [QrCodeController::class, 'index']);
+        Route::get('outdoors', [OutdoorLocationController::class, 'index']);
     });
 
 });
