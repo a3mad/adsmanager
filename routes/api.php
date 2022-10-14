@@ -9,6 +9,7 @@ use App\Http\Controllers\DigitalReportController;
 use App\Http\Controllers\RequestedReportController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\OutdoorLocationController;
+use App\Http\Controllers\OutdoorReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::prefix('v1')->group(function () {
         Route::get('requested-reports', [RequestedReportController::class, 'index']);
         Route::get('qr-codes', [QrCodeController::class, 'index']);
         Route::get('outdoors', [OutdoorLocationController::class, 'index']);
+        Route::get('outdoor-reports', [OutdoorReportController::class, 'index']);
     });
 
 });
