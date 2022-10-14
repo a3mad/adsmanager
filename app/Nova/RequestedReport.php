@@ -13,6 +13,13 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class RequestedReport extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = '2. Indoor Reports';
+    public static $priority = 4;
+    /**
      * The model the resource corresponds to.
      *
      * @var string

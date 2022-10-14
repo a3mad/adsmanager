@@ -13,6 +13,13 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class User extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = '4. Administration';
+    public static $priority = 1;
+    /**
      * The model the resource corresponds to.
      *
      * @var string

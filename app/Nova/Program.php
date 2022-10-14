@@ -12,6 +12,13 @@ use Laravel\Nova\Fields\Image;
 class Program extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = '3. Indoor Report Settings';
+    public static $priority = 3;
+    /**
      * The model the resource corresponds to.
      *
      * @var string

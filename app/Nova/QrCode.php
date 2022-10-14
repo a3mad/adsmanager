@@ -12,6 +12,13 @@ use Devtical\Qrcode\Qrcode as DevticalQR;
 class QrCode extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = '2. Indoor Reports';
+    public static $priority = 3;
+    /**
      * The model the resource corresponds to.
      *
      * @var string

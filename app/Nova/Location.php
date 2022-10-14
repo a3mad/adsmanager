@@ -10,6 +10,13 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Location extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = '3. Indoor Report Settings';
+    public static $priority = 2;
+    /**
      * The model the resource corresponds to.
      *
      * @var string
