@@ -14,7 +14,7 @@ class Channel extends Resource
      *
      * @var string
      */
-    public static $group = '3. Indoor Report Settings';
+    public static $group = '3. Indoors Settings';
     public static $priority = 1;
     /**
      * The model the resource corresponds to.

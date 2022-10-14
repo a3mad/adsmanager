@@ -14,7 +14,7 @@ class Campaign extends Resource
      *
      * @var string
      */
-    public static $group = '3. Indoor Report Settings';
+    public static $group = '3. Indoors Settings';
     public static $priority = 4;
     /**
      * The model the resource corresponds to.

@@ -18,7 +18,7 @@ class Report extends Resource
      *
      * @var string
      */
-    public static $group = '2. Indoor Reports';
+    public static $group = '2. Indoors';
     public static $priority = 1;
     /**
      * The model the resource corresponds to.
