@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('channels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('logo',2083)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

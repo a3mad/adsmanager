@@ -15,7 +15,7 @@ class Channel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'name','logo'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -25,4 +25,11 @@ class Channel extends Model
     protected $hidden = [
         'deleted_at',
     ];
+
+    protected $appends=['logo_url'];
+
+    public function getLogoUrlAttribute()
+    {
+        return asset($this->attributes['logo']);
+    }
 }
