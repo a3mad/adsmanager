@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "devtical/nova-qrcode-field": "^2.0",
         "formfeed-uk/nova-breadcrumbs": "^1.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
@@ -14,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "2.0",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {

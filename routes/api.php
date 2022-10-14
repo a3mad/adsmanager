@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\DigitalReportController;
 use App\Http\Controllers\RequestedReportController;
+use App\Http\Controllers\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::prefix('v1')->group(function () {
         Route::get('reports', [ReportController::class, 'index']);
         Route::get('digital-reports', [DigitalReportController::class, 'index']);
         Route::get('requested-reports', [RequestedReportController::class, 'index']);
+        Route::get('qr-codes', [QrCodeController::class, 'index']);
     });
 
 });
