@@ -58,7 +58,7 @@ class RequestedReport extends Resource
                 ->rules('required', 'max:255')
             ->sortable(),
             File::make('Report File')->disk('public')
-            ->rules('required','file','mimes:pdf,ppt,pptx,doc,docx,xls,xlsx'),
+            ->creationRules('required','file','mimes:pdf,ppt,pptx,doc,docx,xls,xlsx'),
             Textarea::make('Description')
         ];
     }
