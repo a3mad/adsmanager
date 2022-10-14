@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('presenter');
-            $table->string('logo');
+            $table->string('logo',2083);
             $table->tinyInteger('is_radio')->default('0');
             $table->timestamps();
             $table->softDeletes();

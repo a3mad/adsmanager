@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('digital_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('program_id');
-            $table->string('url');
+            $table->string('url',2083);
             $table->string('image');
             $table->unsignedSmallInteger('number_of_sponsors');
             $table->unsignedSmallInteger('number_of_commercials');

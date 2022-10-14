@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('program_id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->text('report_file');
+            $table->string('report_file',2083);
             $table->timestamps();
             $table->softDeletes();
         });
