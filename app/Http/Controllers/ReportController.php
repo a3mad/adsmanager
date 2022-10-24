@@ -32,6 +32,16 @@ class ReportController extends Controller
             'rerun_id' => '',
             'break_id' => '',
         ]);
+        $channels = DB::table('channels')
+            ->leftJoin('reports', 'channels.id', '=', 'reports.channel_id')
+            ->select('channels.id', 'channels.name', 'channels.logo', DB::raw('count(reports.channel_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
+            ->groupBy('channels.id', 'channels.name', 'channels.logo');
+        $campaigns = DB::table('campaigns')
+            ->leftJoin('reports', 'campaigns.id', '=', 'reports.campaign_id')
+            ->select('campaigns.id', 'campaigns.name', DB::raw('count(reports.campaign_id) as total'))
+            ->where('reports.program_id', '=', $request->input('program_id'))
+            ->groupBy('campaigns.id', 'campaigns.name');
         $sponsor_types = DB::table('sponsor_types')
             ->leftJoin('reports', 'sponsor_types.id', '=', 'reports.sponsor_type_id')
             ->select('sponsor_types.id', 'sponsor_types.name', DB::raw('count(reports.sponsor_type_id) as total'))
@@ -56,8 +66,9 @@ class ReportController extends Controller
             ->select(DB::raw('hour(air_time) as hour'), DB::raw('count(*) as total'))
             ->where('reports.program_id', '=', $request->input('program_id'))
             ->groupBy(DB::raw('hour(air_time)'));
-
         $data = [
+            'channels' => $channels,
+            'campaigns' => $campaigns,
             'sponsor_types' => $sponsor_types,
             'locations' => $locations,
             'program_breaks' => $program_breaks,
@@ -95,6 +106,12 @@ class ReportController extends Controller
                 $value->where('program_break_id', '=', $request->input('break_id'));
             }
             $value = $value->get();
+
+            if ($key == 'channels') {
+                foreach ($value as &$item) {
+                    $item->logo_url = asset($item->logo);
+                }
+            }
         }
 
         return $this->successResponse($data);
