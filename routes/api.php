@@ -34,6 +34,7 @@ Route::prefix('v1')->group(function () {
         Route::get('qr-codes', [QrCodeController::class, 'index']);
         Route::get('outdoors', [OutdoorLocationController::class, 'index']);
         Route::get('outdoor-reports', [OutdoorReportController::class, 'index']);
+        Route::post('fcm-token', [AuthController::class, 'updateFcmToken']);
     });
 
 });

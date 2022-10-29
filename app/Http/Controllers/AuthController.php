@@ -48,6 +48,15 @@ class AuthController extends Controller
         ];
         return $this->successResponse($result);
     }
+    public function updateFcmToken(Request $request){
+        $request->validate([
+            'fcm_token' => 'required|string',
+        ]);
+        $user = User::find(Auth::id());
+        $user->fcm_token=$request->input('fcm_token');
+        $user->save();
+        return $this->successResponse(['user'=>$user]);
+    }
 
   /*  public function sendResetLinkEmail(ResetPasswordEmailRequest $request)
     {
