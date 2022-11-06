@@ -54,6 +54,11 @@ class MobileNotification extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Notification Type')->withoutTrashed(),
+            //N.T this relation doesn't exist in the db only exists for nova/actions
+            BelongsTo::make('Program')->withoutTrashed()
+                ->canSee(function ($request) {
+                    return false;
+                }),
         ];
     }
 

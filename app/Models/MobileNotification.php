@@ -30,6 +30,11 @@ class MobileNotification extends Model
     {
         return $this->belongsTo(NotificationType::class);
     }
+    //N.T this relation doesn't exist in the db only exists for nova/actions
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 
     /**
      * Get all of the post's notifications.

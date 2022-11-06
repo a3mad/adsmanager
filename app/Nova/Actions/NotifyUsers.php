@@ -12,6 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class NotifyUsers extends Action
@@ -32,7 +33,7 @@ class NotifyUsers extends Action
             $users = User::whereNotNull('fcm_token')->get();
             foreach ($users as $user) {
                 try {
-                    $user->notify(new ManualNotification($model->notificationType->name));
+                    $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id));
                 } catch (\Exception $e) {
                     report($e);
                     $errors[] = ['notifiable_id'=>$model->id,'notifiable_type'=>'App\Models\MobileNotification','user_id'=>$user->id,'message'=>$e->getMessage(),'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
@@ -50,6 +51,6 @@ class NotifyUsers extends Action
      */
     public function fields(NovaRequest $request)
     {
-        return [];
+        return [ BelongsTo::make('Program')->withoutTrashed()];
     }
 }
