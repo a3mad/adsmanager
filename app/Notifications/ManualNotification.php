@@ -23,9 +23,10 @@ class ManualNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    protected  $notificationType;
+    public function __construct($notificationType)
     {
-        //
+       $this->notificationType=$notificationType;
     }
 
     /**
@@ -47,11 +48,11 @@ class ManualNotification extends Notification
     public function toFcm($notifiable)
     {
         return FcmMessage::create()
-            ->setData(['data1' => 'value', 'data2' => 'value2'])
+            ->setData(['type' => $this->notificationType])
             ->setNotification(\NotificationChannels\Fcm\Resources\Notification::create()
-                ->setTitle('Account Activated')
-                ->setBody('Your account has been activated.')
-                ->setImage('https://cdn4.iconfinder.com/data/icons/pretty-office-part-5-reflection-style/256/Examples.png'))
+                ->setTitle('BioStudios')
+                ->setBody($this->notificationType.' has been updated')
+                ->setImage(asset('logo.png')))
             ->setAndroid(
                 AndroidConfig::create()
                     ->setFcmOptions(AndroidFcmOptions::create()->setAnalyticsLabel('analytics'))
