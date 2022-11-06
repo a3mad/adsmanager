@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -44,7 +45,7 @@ class Program extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -54,10 +55,14 @@ class Program extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-            Image::make('logo')->disk('public'),
+            Image::make('logo')->disk('public')
+                ->rules('required'),
             Text::make('Presenter')
                 ->sortable(),
-            Textarea::make('Description')
+            Textarea::make('Description'),
+            Boolean::make('Is Radio')
+                ->trueValue('1')
+                ->falseValue('0'),
 
         ];
     }
@@ -65,7 +70,7 @@ class Program extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -76,7 +81,7 @@ class Program extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -87,7 +92,7 @@ class Program extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -98,7 +103,7 @@ class Program extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

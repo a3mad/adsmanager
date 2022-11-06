@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->string('presenter');
+            $table->text('description')->nullable();
+            $table->string('presenter')->nullable();
             $table->string('logo',2083);
             $table->tinyInteger('is_radio')->default('0');
             $table->timestamps();
