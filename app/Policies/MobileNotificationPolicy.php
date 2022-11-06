@@ -53,7 +53,7 @@ class MobileNotificationPolicy
      */
     public function update(User $user, MobileNotification $mobileNotification)
     {
-        return  false;
+        return  true;
     }
 
     /**
