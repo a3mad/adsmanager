@@ -15,7 +15,11 @@ class DigitalReport extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'url','image','number_of_sponsors','number_of_commercials','note'
+        'url','image','number_of_sponsors','number_of_commercials','note', 'item_date'
+    ];
+
+    protected $casts = [
+        'item_date' => 'date'
     ];
     /**
      * The attributes that should be hidden for serialization.

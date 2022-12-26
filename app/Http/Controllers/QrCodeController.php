@@ -20,9 +20,9 @@ class QrCodeController extends Controller
         ]);
         $data = QrCode::where('program_id', '=', $request->input('program_id'));
         if ($request->input('date_from') && $request->input('date_to')) {
-            $data->whereBetween('created_at', [$request->input('date_from'), $request->input('date_to')]);
+            $data->whereBetween('item_date', [$request->input('date_from'), $request->input('date_to')]);
         } else {
-            $data->whereBetween('created_at', [Carbon::yesterday(), Carbon::now()]);
+            $data->whereBetween('item_date', [Carbon::yesterday(), Carbon::now()]);
         }
         return $this->successResponse($data->get());
     }

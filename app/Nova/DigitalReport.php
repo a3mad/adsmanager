@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
@@ -53,6 +54,7 @@ class DigitalReport extends Resource
     {
         return [
             ID::make()->sortable(),
+            Date::make('Date','item_date'),
             BelongsTo::make('Program')->withoutTrashed()
                 ->sortable(),
             Text::make('URL')

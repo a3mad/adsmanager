@@ -15,7 +15,10 @@ class RequestedReport extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name','description','report_file',
+        'name','description','report_file', 'item_date'
+    ];
+    protected $casts = [
+        'item_date' => 'date'
     ];
     /**
      * The attributes that should be hidden for serialization.
