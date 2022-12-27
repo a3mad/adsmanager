@@ -14,7 +14,7 @@ class SponsorType extends Resource
      *
      * @var string
      */
-    public static $group = '3. Indoors Settings';
+    public static $group = '1. TV and radio monitoring - monitoring report - EDIT';
     public static $priority = 6;
 
     /**

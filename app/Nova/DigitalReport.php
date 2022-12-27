@@ -19,7 +19,8 @@ class DigitalReport extends Resource
      *
      * @var string
      */
-    public static $group = '2. Indoors';
+    public static $group = '2. REPORTS SETTING';
+
     public static $priority = 2;
     /**
      * The model the resource corresponds to.

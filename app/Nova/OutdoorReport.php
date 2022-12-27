@@ -13,7 +13,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class OutdoorReport extends Resource
 {
-    public static $group = '1. Outdoors';
+    public static $group = '3. Outdoors';
     public static $priority = 2;
     /**
      * The model the resource corresponds to.

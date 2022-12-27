@@ -17,7 +17,7 @@ class QrCode extends Resource
      *
      * @var string
      */
-    public static $group = '2. Indoors';
+    public static $group = '2. REPORTS SETTING';
     public static $priority = 3;
     /**
      * The model the resource corresponds to.

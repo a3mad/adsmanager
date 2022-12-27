@@ -15,7 +15,7 @@ class OutdoorLocation extends Resource
      *
      * @var string
      */
-    public static $group = '1. Outdoors';
+    public static $group = '3. Outdoors';
     public static $priority = 1;
     /**
      * The model the resource corresponds to.
