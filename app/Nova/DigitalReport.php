@@ -22,6 +22,11 @@ class DigitalReport extends Resource
     public static $group = '2. REPORTS SETTING';
 
     public static $priority = 2;
+
+    public static function label()
+    {
+        return 'DIGITAL LINKS / REPORTS + DAILY CONFIRMATION';
+    }
     /**
      * The model the resource corresponds to.
      *

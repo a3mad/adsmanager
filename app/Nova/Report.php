@@ -20,6 +20,11 @@ class Report extends Resource
      */
     public static $group = '2. REPORTS SETTING';
     public static $priority = 1;
+
+    public static function label()
+    {
+        return 'T.V AND RADIO REPORTS';//DIGITAL LINKS / REPORTS + DAILY CONFIRMATION
+    }
     /**
      * The model the resource corresponds to.
      *

@@ -20,6 +20,11 @@ class RequestedReport extends Resource
      */
     public static $group = '2. REPORTS SETTING';
     public static $priority = 4;
+
+    public static function label()
+    {
+        return 'CONTENT REPORT';
+    }
     /**
      * The model the resource corresponds to.
      *
