@@ -36,6 +36,12 @@ class MobileNotification extends Model
         return $this->belongsTo(Program::class);
     }
 
+    //N.T this relation doesn't exist in the db only exists for nova/actions
+    public function outdoorLocation()
+    {
+        return $this->belongsTo(OutdoorLocation::class);
+    }
+
     /**
      * Get all of the post's notifications.
      */

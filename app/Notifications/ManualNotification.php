@@ -25,10 +25,12 @@ class ManualNotification extends Notification
      */
     protected  $notificationType;
     protected $programId;
-    public function __construct($notificationType,$programId)
+    protected $locationId;
+    public function __construct($notificationType,$programId=null,$locationId=null)
     {
        $this->notificationType=$notificationType;
        $this->programId=$programId;
+       $this->locationId=$locationId;
     }
 
     /**
@@ -50,7 +52,7 @@ class ManualNotification extends Notification
     public function toFcm($notifiable)
     {
         return FcmMessage::create()
-            ->setData(['notification_type' => $this->notificationType,'program_id'=>$this->programId])
+            ->setData(['notification_type' => $this->notificationType,'program_id'=>$this->programId,'location_id'=>$this->locationId ])
             ->setNotification(\NotificationChannels\Fcm\Resources\Notification::create()
                 ->setTitle('BioStudios')
                 ->setBody($this->notificationType.' has been updated')

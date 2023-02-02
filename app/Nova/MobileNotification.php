@@ -59,6 +59,11 @@ class MobileNotification extends Resource
                 ->canSee(function ($request) {
                     return false;
                 }),
+            //N.T this relation doesn't exist in the db only exists for nova/actions
+            BelongsTo::make('OutdoorLocation')->withoutTrashed()
+                ->canSee(function ($request) {
+                    return false;
+                }),
         ];
     }
 

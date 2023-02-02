@@ -33,7 +33,13 @@ class NotifyUsers extends Action
             $users = User::whereNotNull('fcm_token')->get();
             foreach ($users as $user) {
                 try {
-                    $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id));
+                    /*if($model->notificationType->id=='5')
+                    {
+                        //outdoorLocation
+                        $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id,$fields->outdoorLocation->id));
+                    }else*/
+                        $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id, $fields->outdoorLocation->id));
+                    //$user->notify(new ManualNotification($model->notificationType->name,$fields->program->id));
                 } catch (\Exception $e) {
                     report($e);
                     $errors[] = ['notifiable_id'=>$model->id,'notifiable_type'=>'App\Models\MobileNotification','user_id'=>$user->id,'message'=>$e->getMessage(),'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
@@ -51,6 +57,13 @@ class NotifyUsers extends Action
      */
     public function fields(NovaRequest $request)
     {
-        return [ BelongsTo::make('Program')->withoutTrashed()];
+        //dd($request->all());
+        //if($request->notificationType->id=='5')
+            //return [ BelongsTo::make('OutdoorLocation')->withoutTrashed()];
+        //else
+            return [
+                BelongsTo::make('Program')->withoutTrashed(),
+                BelongsTo::make('OutdoorLocation')->withoutTrashed(),
+            ];
     }
 }
