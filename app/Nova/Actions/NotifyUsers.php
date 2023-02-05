@@ -62,8 +62,8 @@ class NotifyUsers extends Action
             //return [ BelongsTo::make('OutdoorLocation')->withoutTrashed()];
         //else
             return [
-                BelongsTo::make('Program')->withoutTrashed(),
-                BelongsTo::make('OutdoorLocation')->withoutTrashed(),
+                BelongsTo::make('Program')->withoutTrashed()->nullable(),
+                BelongsTo::make('OutdoorLocation')->withoutTrashed()->nullable(),
             ];
     }
 }
