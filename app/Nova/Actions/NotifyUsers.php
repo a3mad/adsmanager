@@ -33,12 +33,12 @@ class NotifyUsers extends Action
             $users = User::whereNotNull('fcm_token')->get();
             foreach ($users as $user) {
                 try {
-                    /*if($model->notificationType->id=='5')
+                    if($model->notificationType->id=='5')
                     {
                         //outdoorLocation
-                        $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id,$fields->outdoorLocation->id));
-                    }else*/
-                        $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id, $fields->outdoorLocation->id));
+                        $user->notify(new ManualNotification($model->notificationType->name,null,$fields->outdoorLocation->id));
+                    }else
+                        $user->notify(new ManualNotification($model->notificationType->name,$fields->program->id, null));
                     //$user->notify(new ManualNotification($model->notificationType->name,$fields->program->id));
                 } catch (\Exception $e) {
                     report($e);
