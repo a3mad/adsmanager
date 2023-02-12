@@ -8,6 +8,7 @@ use Formfeed\Breadcrumbs\Breadcrumbs;
 
 abstract class Resource extends NovaResource
 {
+    public static $canImportResource = false;
     /**
      * Build an "index" query for the given resource.
      *
