@@ -35,8 +35,7 @@ class ReportImporter implements ToModel, WithValidation, WithHeadingRow, WithMap
     protected $attribute_map;
     protected $rules;
     protected $model_class;
-    private $stored_rows = 0;
-    private $errors_list = [];
+    private $row_num = 1;
 
 
     public function map($row): array
@@ -113,11 +112,11 @@ class ReportImporter implements ToModel, WithValidation, WithHeadingRow, WithMap
 
     public function model(array $row)
     {
+        $this->row_num++;
         $model = $this->resource::newModel();
         $this->mapForeignKeys($row);
         $model->fill($row);
         
-        ++$this->stored_rows;
         return $model;
     }
 
@@ -201,25 +200,13 @@ class ReportImporter implements ToModel, WithValidation, WithHeadingRow, WithMap
      */
     public function onError(\Throwable $e)
     {
-        array_push($this->errors_list, $e);
-        --$this->stored_rows;
+        $error = [
+            "row" => $this->row_num,
+            "attribute" => "",
+            "details" => $e->getPrevious()->errorInfo[2],
+            "raw_data" => ""
+        ];
+        $this->errors[] = $error;
     }
 
-    public function errors()
-    {
-        return $this->errors_list;
-    }
-
-    /**
-     * @param Failure[] $failures
-     */
-    public function onFailure(Failure ...$failures)
-    {
-        --$this->stored_rows;
-    }
-
-    public function getRowCount(): int
-    {
-        return $this->stored_rows;
-    }
 }
